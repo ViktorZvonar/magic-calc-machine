@@ -1,0 +1,19 @@
+:root {
+  --color-background: #8915e1;
+  --color-primary: #1f2937;
+  --color-operator: #34e934;
+  --color-operator-active: #83ffb1;
+  --color-equals-clear: #e6780a;
+  --color-equals-clear-active: #fbc55e;
+  --color-operand: #090995;
+  --color-operand-active: #0000ff;
+  --color-sign-percent: #3882f6;
+  --color-sign-percent-active: #60a6ec;
+  --color-neutral1: #e5e7eb;
+  --color-neutral2: #f9faf8;
+  --color-neutral3: #919396;
+
+  --font-size-small: 14px;
+  --font-size-medium: 20px;
+  --font-size-large: 36px;
+}

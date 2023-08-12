@@ -1,0 +1,85 @@
+/* borrowed */
+
+#calc-page {
+  display: flex;
+  min-height: 95vh;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-background);
+}
+
+#calculator {
+  display: grid;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+  gap: 5px;
+}
+
+#display {
+  grid-column: 1 / -1;
+  background-color: var(--color-neutral1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  padding: 5px;
+  border-radius: 25px;
+  font-size: var(--font-size-medium);
+  font-weight: initial;
+  text-shadow: 1.3px 1.3px var(--color-neutral3);
+  margin: 5px;
+}
+
+button {
+  margin: 1px;
+  border-radius: 50px;
+  border: none;
+  font-weight: initial;
+  font-size: var(--font-size-large);
+  color: var(--color-neutral2);
+}
+
+#zero {
+  grid-column: span 2;
+}
+
+.operator {
+  background-color: var(--color-operator);
+}
+
+.operator:focus {
+  background-color: var(--color-operator-active);
+}
+
+.equals,
+.clear {
+  background-color: var(--color-equals-clear);
+}
+
+.equals:active,
+.clear:active {
+  background-color: var(--color-equals-clear-active);
+}
+
+.operand,
+.decimal {
+  background-color: var(--color-operand);
+}
+
+.operand:active,
+.decimal:active {
+  background-color: var(--color-operand-active);
+}
+
+.sign,
+.percent {
+  background-color: var(--color-sign-percent);
+}
+
+.sign:active,
+.percent:active {
+  background-color: var(--color-sign-percent-active);
+}
