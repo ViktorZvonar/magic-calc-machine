@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <link rel="icon" href="./images/logo.png" />
+    <script src="./index.js" type="module" defer></script>
+    <title>Magic Calc Machine</title>
+  </head>
+  <body>
+    <div id="header-placeholder"></div>
+    <main id="page" class="container header-space">
+      <section id="calculator">
+        <div id="display"></div>
+        <button type="button" class="clear" value="clear" data-key="Backspace">
+          AC
+        </button>
+        <button type="button" class="sign" value="sign" data-key="Backquote">
+          +/-
+        </button>
+        <button type="button" class="percent" value="percent" data-key="KeyP">
+          %
+        </button>
+        <button
+          type="button"
+          class="operator"
+          value="/"
+          data-key="NumpadDivide,Slash"
+        >
+          /
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="7"
+          data-key="Numpad7,Digit7"
+        >
+          7
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="8"
+          data-key="Numpad8,Digit8"
+        >
+          8
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="9"
+          data-key="Numpad9,Digit9"
+        >
+          9
+        </button>
+        <button
+          type="button"
+          class="operator"
+          value="*"
+          data-key="NumpadMultiply,"
+        >
+          *
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="4"
+          data-key="Numpad4,Digit4"
+        >
+          4
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="5"
+          data-key="Numpad5,Digit5"
+        >
+          5
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="6"
+          data-key="Numpad6,Digit6"
+        >
+          6
+        </button>
+        <button
+          type="button"
+          class="operator"
+          value="-"
+          data-key="NumpadSubtract,Minus"
+        >
+          -
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="1"
+          data-key="Numpad1,Digit1"
+        >
+          1
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="2"
+          data-key="Numpad2,Digit2"
+        >
+          2
+        </button>
+        <button
+          type="button"
+          class="operand"
+          value="3"
+          data-key="Numpad3,Digit3"
+        >
+          3
+        </button>
+        <button
+          type="button"
+          class="operator"
+          value="+"
+          data-key="NumpadAdd,Plus"
+        >
+          +
+        </button>
+        <button
+          type="button"
+          id="zero"
+          class="operand"
+          value="0"
+          data-key="Numpad0,Digit0"
+        >
+          0
+        </button>
+        <button
+          type="button"
+          class="decimal"
+          value="."
+          data-key="NumpadDecimal,Period"
+        >
+          .
+        </button>
+        <button
+          type="button"
+          class="equals"
+          value="="
+          data-key="NumpadEnter,Equal"
+        >
+          =
+        </button>
+      </section>
+    </main>
+    <div id="footer-placeholder"></div>
+  </body>
+</html>
