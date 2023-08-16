@@ -1,7 +1,18 @@
 import { headerFooterLayout } from "./modules/headerFooterLayout.js";
-import Calculator from "./modules/calculator.js";
-import Modal from "./modules/modal-window.js";
+import { updateDisplay } from "./modules/calculator.js";
+import { listen } from "./modules/ui.js";
+import { modal } from "./modules/modal-window.js";
 
 headerFooterLayout();
-Calculator();
-Modal();
+modal();
+
+const display = document.getElementById("display");
+
+if (display) {
+  function start() {
+    listen();
+    updateDisplay();
+  }
+
+  start();
+}

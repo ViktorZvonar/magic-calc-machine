@@ -1,4 +1,4 @@
-export default function Modal() {
+export function modal() {
   const modal = document.getElementById("modal");
   const image = document.querySelector(".hero-pic");
   const closeButton = document.querySelector(".close-button");
