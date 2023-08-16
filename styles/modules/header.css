@@ -1,0 +1,32 @@
+header {
+  background-color: var(--color-equals-clear);
+  padding: 15px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 9;
+}
+
+.flex-for-header,
+.header-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-nav {
+  width: 340px;
+  justify-content: space-evenly;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.logo-image {
+  width: 35px;
+  height: auto;
+  border: 2px solid var(--color-primary);
+}
+
+.header-nav-item {
+  color: var(--color-neutral2);
+}
