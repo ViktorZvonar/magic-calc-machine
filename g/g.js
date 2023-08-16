@@ -1,5 +1,5 @@
-import { listen } from "./modules/ui";
-import { updateDisplay } from "./modules/utils";
+import { updateDisplay } from "./modules/calculator.js";
+import { listen } from "./modules/ui.js";
 
 function start() {
   listen();

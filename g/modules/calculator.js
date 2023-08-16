@@ -1,5 +1,5 @@
 import { MAX_DIGITS } from "./constants.js";
-import { updateDisplay } from "./ui.js";
+import { truncate } from "./utils.js";
 
 const state = {
   hiddenOperand: "0",
@@ -22,6 +22,11 @@ function multiply(number1, number2) {
 
 function divide(number1, number2) {
   return number1 / number2;
+}
+
+export function updateDisplay() {
+  const display = document.getElementById("display");
+  display.textContent = `${state.visibleOperand}`;
 }
 
 function operate() {

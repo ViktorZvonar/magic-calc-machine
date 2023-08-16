@@ -1,9 +1,4 @@
-import { calculatorKeys } from "./modules/calculator";
-
-export function updateDisplay() {
-  const display = document.getElementById("display");
-  display.textContent = `${state.visibleOperand}`;
-}
+import { calculatorKeys } from "./calculator.js";
 
 export function listen() {
   for (const [key, keyHandler] of Object.entries(calculatorKeys)) {
