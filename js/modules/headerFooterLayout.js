@@ -3,7 +3,7 @@ export const headerFooterLayout = function () {
     const isLocalhost =
       window.location.hostname === "localhost" ||
       window.location.hostname === "127.0.0.1";
-    const basePath = isLocalhost ? "./pages" : "/magic-calc-machine/pages";
+    const basePath = isLocalhost ? "." : "/magic-calc-machine";
 
     fetch(`${basePath}/header.html`)
       .then((response) => response.text())
