@@ -1,3 +1,6 @@
+import keyDownHandler from "./keyDownHandler.js";
+import updateDisplay from "./updateDisplay.js";
+
 export default function Calculator() {
   let displayValue = "0";
   let firstOperand = null;
@@ -7,52 +10,44 @@ export default function Calculator() {
   let result = null;
   const buttons = document.querySelectorAll("button");
 
-  document.addEventListener("keydown", function (e) {
-    const key = Array.from(buttons).find((button) => {
-      const keys = button.getAttribute("data-key").split(",");
-      return keys.includes(e.code);
-    }, console.log(e.code));
+  keyDownHandler(buttons);
 
-    if (key) {
-      key.click();
-    }
-  });
-
-  function updateDisplay() {
-    const display = document.getElementById("display");
-    if (!display) {
-      return;
-    }
-    display.innerText = displayValue;
-    if (displayValue.length > 9) {
-      display.innerText = displayValue.substring(0, 9);
-    }
-  }
-
-  updateDisplay();
+  updateDisplay(displayValue);
 
   function clickButton() {
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener("click", function () {
-        if (buttons[i].classList.contains("operand")) {
-          inputOperand(buttons[i].value);
-          updateDisplay();
-        } else if (buttons[i].classList.contains("operator")) {
-          inputOperator(buttons[i].value);
-        } else if (buttons[i].classList.contains("equals")) {
-          inputEquals();
-          updateDisplay();
-        } else if (buttons[i].classList.contains("decimal")) {
-          inputDecimal(buttons[i].value);
-          updateDisplay();
-        } else if (buttons[i].classList.contains("percent")) {
-          inputPercent(displayValue);
-          updateDisplay();
-        } else if (buttons[i].classList.contains("sign")) {
-          inputSign(displayValue);
-          updateDisplay();
-        } else if (buttons[i].classList.contains("clear")) clearDisplay();
-        updateDisplay();
+        switch (true) {
+          case buttons[i].classList.contains("operand"):
+            inputOperand(buttons[i].value);
+            break;
+
+          case buttons[i].classList.contains("operator"):
+            inputOperator(buttons[i].value);
+            break;
+
+          case buttons[i].classList.contains("equals"):
+            inputEquals();
+            break;
+
+          case buttons[i].classList.contains("decimal"):
+            inputDecimal(buttons[i].value);
+            break;
+
+          case buttons[i].classList.contains("percent"):
+            inputPercent(displayValue);
+            break;
+
+          case buttons[i].classList.contains("sign"):
+            inputSign(displayValue);
+            break;
+
+          case buttons[i].classList.contains("clear"):
+            clearDisplay();
+            break;
+        }
+
+        updateDisplay(displayValue);
       });
     }
   }
@@ -173,13 +168,6 @@ export default function Calculator() {
     firstOperator = null;
     secondOperator = null;
     result = null;
-  }
-
-  function inputBackspace() {
-    if (firstOperand != null) {
-      firstOperand = null;
-      updateDisplay();
-    }
   }
 
   function operate(x, y, op) {

@@ -4,6 +4,7 @@
     0 0 25px var(--color-equals-clear-active), 0 0 35px var(--color-operator),
     0 0 40px var(--color-operator), 0 0 45px var(--color-operator);
   margin-bottom: 40px;
+  cursor: pointer;
 }
 .hero-text {
   color: var(--color-neutral2);
