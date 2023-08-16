@@ -29,5 +29,4 @@ header {
 
 .header-nav-item {
   color: var(--color-neutral2);
-  transition: transform 0.2s ease;
 }

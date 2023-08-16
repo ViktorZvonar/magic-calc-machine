@@ -16,7 +16,7 @@ html {
   scroll-behavior: smooth;
 }
 
-#page {
+main {
   display: flex;
   min-height: 100vh;
   justify-content: center;
