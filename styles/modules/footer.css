@@ -1,10 +1,27 @@
 footer {
+  background-color: #333;
+  font-size: var(--font-size-medium);
+  color: var(--color-neutral2);
+
+  padding: 20px 0;
+}
+
+.quote-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: end;
-  background-color: #333;
-  color: var(--color-neutral2);
+  align-items: center;
+}
+
+.footer-quote {
+  display: block;
+  margin-bottom: 15px;
   text-align: center;
-  padding: 20px 0;
+}
+
+.footer-quote-author {
+  background-color: var(--color-equals-clear);
+  padding: 10px;
+  max-width: 170px;
+  border-radius: 15px;
 }
