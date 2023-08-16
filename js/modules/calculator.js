@@ -1,195 +1,140 @@
-import keyDownHandler from "./keyDownHandler.js";
-import updateDisplay from "./updateDisplay.js";
+import { MAX_DIGITS } from "./constants.js";
+import { truncate } from "./utils.js";
 
-export default function Calculator() {
-  let displayValue = "0";
-  let firstOperand = null;
-  let secondOperand = null;
-  let firstOperator = null;
-  let secondOperator = null;
-  let result = null;
-  const buttons = document.querySelectorAll("button");
+const state = {
+  hiddenOperand: "0",
+  visibleOperand: "0",
+  operator: null,
+  hasTypedAfterOperation: false,
+};
 
-  keyDownHandler(buttons);
-
-  updateDisplay(displayValue);
-
-  function clickButton() {
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].addEventListener("click", function () {
-        switch (true) {
-          case buttons[i].classList.contains("operand"):
-            inputOperand(buttons[i].value);
-            break;
-
-          case buttons[i].classList.contains("operator"):
-            inputOperator(buttons[i].value);
-            break;
-
-          case buttons[i].classList.contains("equals"):
-            inputEquals();
-            break;
-
-          case buttons[i].classList.contains("decimal"):
-            inputDecimal(buttons[i].value);
-            break;
-
-          case buttons[i].classList.contains("percent"):
-            inputPercent(displayValue);
-            break;
-
-          case buttons[i].classList.contains("sign"):
-            inputSign(displayValue);
-            break;
-
-          case buttons[i].classList.contains("clear"):
-            clearDisplay();
-            break;
-        }
-
-        updateDisplay(displayValue);
-      });
-    }
-  }
-
-  clickButton();
-
-  function inputOperand(operand) {
-    if (firstOperator === null) {
-      if (displayValue === "0" || displayValue === 0) {
-        displayValue = operand;
-      } else if (displayValue === firstOperand) {
-        displayValue = operand;
-      } else {
-        displayValue += operand;
-      }
-    } else {
-      if (displayValue === firstOperand) {
-        displayValue = operand;
-      } else {
-        displayValue += operand;
-      }
-    }
-  }
-
-  function inputOperator(operator) {
-    if (firstOperator != null && secondOperator === null) {
-      secondOperator = operator;
-      secondOperand = displayValue;
-      result = operate(
-        Number(firstOperand),
-        Number(secondOperand),
-        firstOperator,
-      );
-      displayValue = roundAccurately(result, 15).toString();
-      firstOperand = displayValue;
-      result = null;
-    } else if (firstOperator != null && secondOperator != null) {
-      secondOperand = displayValue;
-      result = operate(
-        Number(firstOperand),
-        Number(secondOperand),
-        secondOperator,
-      );
-      secondOperator = operator;
-      displayValue = roundAccurately(result, 15).toString();
-      firstOperand = displayValue;
-      result = null;
-    } else {
-      firstOperator = operator;
-      firstOperand = displayValue;
-    }
-  }
-
-  function inputEquals() {
-    if (firstOperator === null) {
-      displayValue = displayValue;
-    } else if (secondOperator != null) {
-      secondOperand = displayValue;
-      result = operate(
-        Number(firstOperand),
-        Number(secondOperand),
-        secondOperator,
-      );
-
-      if (result === "Error") {
-        displayValue = "Error";
-      } else {
-        displayValue = roundAccurately(result, 15).toString();
-        firstOperand = displayValue;
-        secondOperand = null;
-        firstOperator = null;
-        secondOperator = null;
-        result = null;
-      }
-    } else {
-      secondOperand = displayValue;
-      result = operate(
-        Number(firstOperand),
-        Number(secondOperand),
-        firstOperator,
-      );
-
-      if (result === "Error") {
-        alert("Error");
-        clearDisplay();
-      } else {
-        displayValue = roundAccurately(result, 15).toString();
-        firstOperand = displayValue;
-        secondOperand = null;
-        firstOperator = null;
-        secondOperator = null;
-        result = null;
-      }
-    }
-  }
-
-  function inputDecimal(dot) {
-    if (displayValue === firstOperand || displayValue === secondOperand) {
-      displayValue = "0";
-      displayValue += dot;
-    } else if (!displayValue.includes(dot)) {
-      displayValue += dot;
-    }
-  }
-
-  function inputPercent(num) {
-    displayValue = (num / 100).toString();
-  }
-
-  function inputSign(num) {
-    displayValue = (num * -1).toString();
-  }
-
-  function clearDisplay() {
-    displayValue = "0";
-    firstOperand = null;
-    secondOperand = null;
-    firstOperator = null;
-    secondOperator = null;
-    result = null;
-  }
-
-  function operate(x, y, op) {
-    switch (op) {
-      case "+":
-        return x + y;
-      case "-":
-        return x - y;
-      case "*":
-        return x * y;
-      case "/":
-        if (y === 0) {
-          return "Error";
-        } else {
-          return x / y;
-        }
-      default:
-        return "Error";
-    }
-  }
-
-  function roundAccurately(num, places) {
-    return parseFloat(Math.round(num + "e" + places) + "e-" + places);
-  }
+function add(number1, number2) {
+  return number1 + number2;
 }
+
+function subtract(number1, number2) {
+  return number1 - number2;
+}
+
+function multiply(number1, number2) {
+  return number1 * number2;
+}
+
+function divide(number1, number2) {
+  return number1 / number2;
+}
+
+export function updateDisplay() {
+  const display = document.getElementById("display");
+  display.textContent = `${state.visibleOperand}`;
+}
+
+function operate() {
+  if (!state.operator) return;
+
+  const result = state.operator(+state.hiddenOperand, +state.visibleOperand);
+  const truncatedResult = truncate(result);
+  state.visibleOperand = truncatedResult;
+  state.operator = null;
+  state.hasTypedAfterOperation = false;
+
+  updateDisplay();
+}
+
+function setOperator(operator) {
+  if (state.operator && state.hasTypedAfterOperation) {
+    // Solves previous operation if user has not pressed equals yet and has typed something to operate on
+    operate();
+  } else {
+    // Prepares to reset display value when user starts typing next number
+    state.hiddenOperand = state.visibleOperand;
+    state.hasTypedAfterOperation = false;
+    updateDisplay();
+  }
+
+  state.operator = operator;
+}
+
+function switchSign() {
+  state.visibleOperand = String(-state.visibleOperand);
+  if (!state.hasTypedAfterOperation) {
+    state.hiddenOperand = state.visibleOperand;
+  }
+  updateDisplay();
+}
+
+function useDecimal() {
+  const isDecimal = state.visibleOperand.includes(".");
+  if (isDecimal) return;
+  handleNumberInput(".");
+}
+
+function calculatePercentage() {
+  state.visibleOperand = String(+state.visibleOperand / 100);
+  if (!state.hasTypedAfterOperation) {
+    state.hiddenOperand = state.visibleOperand;
+  }
+  updateDisplay();
+}
+
+function clear() {
+  state.visibleOperand = state.hiddenOperand = "0";
+  state.operator = null;
+  updateDisplay();
+}
+
+function handleNumberInput(input) {
+  if (!state.hasTypedAfterOperation) {
+    state.hiddenOperand = state.visibleOperand;
+    state.visibleOperand = "0";
+    state.hasTypedAfterOperation = true;
+  }
+
+  if (state.visibleOperand.length >= MAX_DIGITS) return;
+
+  if (input === "." && state.visibleOperand === "0") {
+    state.visibleOperand = "0.";
+  } else if (state.visibleOperand === "0") {
+    state.visibleOperand = "" + input;
+  } else {
+    state.visibleOperand = `${state.visibleOperand}` + input;
+  }
+
+  updateDisplay();
+}
+
+function handleBackspace() {
+  if (state.visibleOperand.length === 1) {
+    state.visibleOperand = "0";
+  } else {
+    state.visibleOperand = state.visibleOperand.slice(
+      0,
+      state.visibleOperand.length - 1,
+    );
+  }
+
+  updateDisplay();
+}
+
+export const calculatorKeys = {
+  c: clear,
+  s: switchSign,
+  Backspace: handleBackspace,
+  ".": useDecimal,
+  "%": calculatePercentage,
+  "=": operate,
+  "+": () => setOperator(add),
+  "-": () => setOperator(subtract),
+  "*": () => setOperator(multiply),
+  "/": () => setOperator(divide),
+  0: () => handleNumberInput(0),
+  1: () => handleNumberInput(1),
+  2: () => handleNumberInput(2),
+  3: () => handleNumberInput(3),
+  4: () => handleNumberInput(4),
+  5: () => handleNumberInput(5),
+  6: () => handleNumberInput(6),
+  7: () => handleNumberInput(7),
+  8: () => handleNumberInput(8),
+  9: () => handleNumberInput(9),
+};
