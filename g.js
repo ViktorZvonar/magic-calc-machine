@@ -123,44 +123,62 @@ function handleKeyboardPress(event) {
 
 function listen() {
   const buttonClear = document.querySelector('[data-key="8"]');
-  const buttonSign = document.querySelector('[data-key="192"]');
-  const buttonPercentage = document.querySelector('[data-key="80"]');
-  const buttonDecimal = document.querySelector('[data-key="190"]');
-  const buttonDivide = document.querySelector('[data-key="68"]');
-  const buttonMultiply = document.querySelector('[data-key="88"]');
-  const buttonSubtract = document.querySelector('[data-key="173"]');
-  const buttonAdd = document.querySelector('[data-key="61"]');
-  const buttonEquals = document.querySelector('[data-key="69"]');
-  const button0 = document.querySelector('[data-key="48"]');
-  const button1 = document.querySelector('[data-key="49"]');
-  const button2 = document.querySelector('[data-key="50"]');
-  const button3 = document.querySelector('[data-key="51"]');
-  const button4 = document.querySelector('[data-key="52"]');
-  const button5 = document.querySelector('[data-key="53"]');
-  const button6 = document.querySelector('[data-key="54"]');
-  const button7 = document.querySelector('[data-key="55"]');
-  const button8 = document.querySelector('[data-key="56"]');
-  const button9 = document.querySelector('[data-key="57"]');
-
   buttonClear.addEventListener("click", clear);
+
+  const buttonSign = document.querySelector('[data-key="192"]');
   buttonSign.addEventListener("click", switchSign);
+
+  const buttonDecimal = document.querySelector('[data-key="190"]');
   buttonDecimal.addEventListener("click", useDecimal);
+
+  const buttonPercentage = document.querySelector('[data-key="80"]');
   buttonPercentage.addEventListener("click", calculatePercentage);
+
+  const buttonEquals = document.querySelector('[data-key="69"]');
   buttonEquals.addEventListener("click", operate);
+
+  const buttonAdd = document.querySelector('[data-key="61"]');
   buttonAdd.addEventListener("click", () => setOperator(add));
+
+  const buttonSubtract = document.querySelector('[data-key="173"]');
   buttonSubtract.addEventListener("click", () => setOperator(subtract));
+
+  const buttonMultiply = document.querySelector('[data-key="88"]');
   buttonMultiply.addEventListener("click", () => setOperator(multiply));
+
+  const buttonDivide = document.querySelector('[data-key="68"]');
   buttonDivide.addEventListener("click", () => setOperator(divide));
+
+  const button0 = document.querySelector('[data-key="48"]');
   button0.addEventListener("click", () => handleInput(0));
+
+  const button1 = document.querySelector('[data-key="49"]');
   button1.addEventListener("click", () => handleInput(1));
+
+  const button2 = document.querySelector('[data-key="50"]');
   button2.addEventListener("click", () => handleInput(2));
+
+  const button3 = document.querySelector('[data-key="51"]');
   button3.addEventListener("click", () => handleInput(3));
+
+  const button4 = document.querySelector('[data-key="52"]');
   button4.addEventListener("click", () => handleInput(4));
+
+  const button5 = document.querySelector('[data-key="53"]');
   button5.addEventListener("click", () => handleInput(5));
+
+  const button6 = document.querySelector('[data-key="54"]');
   button6.addEventListener("click", () => handleInput(6));
+
+  const button7 = document.querySelector('[data-key="55"]');
   button7.addEventListener("click", () => handleInput(7));
+
+  const button8 = document.querySelector('[data-key="56"]');
   button8.addEventListener("click", () => handleInput(8));
+
+  const button9 = document.querySelector('[data-key="57"]');
   button9.addEventListener("click", () => handleInput(9));
+
   document.addEventListener("keydown", handleKeyboardPress);
 }
 
