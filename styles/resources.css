@@ -1,4 +1,4 @@
-li a:hover{
+/* li a:hover{
     color: white;
 }
 
@@ -23,9 +23,9 @@ li{
     margin-left: 5vw;
     border-left: 100vw;
     padding: 0.8vh;
-    background-color: blue;
-    /*border: 0.2vh solid black;*/
-    width: 20vw;
+    background-color: blue; */
+/*border: 0.2vh solid black;*/
+/* width: 20vw;
     border-radius: 1vw;
     display: inline-block;
     text-align: center;
@@ -36,4 +36,4 @@ li{
 
 li:hover{
     background-color: grey;
-}
+} */
