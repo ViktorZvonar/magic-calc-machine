@@ -1,3 +1,39 @@
 li a:hover{
-    color: blue;
+    color: white;
+}
+
+body{
+    margin: 2vh;
+}
+
+h1{
+    border-bottom: 0.7vw solid black;
+    border-color: black;
+}
+
+h1, h2{
+    padding: 2vh;
+}
+
+p{
+    padding: 2vh;
+}
+
+li{
+    margin-left: 5vw;
+    border-left: 100vw;
+    padding: 0.8vh;
+    background-color: blue;
+    /*border: 0.2vh solid black;*/
+    width: 20vw;
+    border-radius: 1vw;
+    display: inline-block;
+    text-align: center;
+    border-left: 100vw;
+    
+    
+}
+
+li:hover{
+    background-color: grey;
 }
