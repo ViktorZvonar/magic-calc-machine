@@ -10,16 +10,15 @@ export function truncate(number) {
   if (str.length <= MAX_DIGITS) return str;
 
   const isDecimal = str.includes(".");
-  const isScientificNotation = str.includes("e");
 
-  if (isScientificNotation) {
-    if (number > MAX_NUMBER) return "Infinity";
-    else if (number < MIN_NUMBER) return "-Infinity";
-    else return str;
-  } else if (isDecimal) {
+  if (isDecimal) {
     return String(+str.slice(0, MAX_DIGITS));
   } else {
-    return roundUsingScientificNotation(number);
+    const scientificNumber = roundUsingScientificNotation(number);
+
+    if (+scientificNumber > MAX_NUMBER) return "Infinity";
+    else if (+scientificNumber < MIN_NUMBER) return "-Infinity";
+    else return scientificNumber;
   }
 }
 
@@ -30,9 +29,5 @@ function roundUsingScientificNotation(number) {
     0,
     MAX_DIGITS - orderNotation.length,
   );
-  const scientificNumber = prefix + orderNotation;
-
-  if (+scientificNumber > MAX_NUMBER) return "Infinity";
-  else if (+scientificNumber < MIN_NUMBER) return "-Infinity";
-  else return scientificNumber;
+  return prefix + orderNotation;
 }
