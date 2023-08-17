@@ -32,6 +32,14 @@ header {
   color: var(--color-neutral2);
 }
 
+.header-nav-item .current {
+  color: var(--color-primary);
+  padding: 5px 10px;
+  background-color: var(--color-neutral2);
+  border-radius: 10px;
+  border: 2px solid var(--color-primary);
+}
+
 .menu-toggle {
   display: none;
   font-size: 2rem;
