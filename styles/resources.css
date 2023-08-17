@@ -1,39 +1,57 @@
-/* li a:hover{
-    color: white;
+.resourses-container {
+  display: flex;
+  flex-direction: column;
+  color: var(--color-neutral2);
+  font-size: var(--font-size-medium);
 }
 
-body{
-    margin: 2vh;
+.resourses-articles-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
-h1{
-    border-bottom: 0.7vw solid black;
-    border-color: black;
+.resourses-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-h1, h2{
-    padding: 2vh;
+.resourses-header {
+  margin-bottom: 50px;
+  background-color: var(--color-equals-clear);
+  padding: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  color: var(--color-primary);
+  font-size: var(--font-size-large);
 }
 
-p{
-    padding: 2vh;
+.resourse-story-desc {
+  color: var(--color-equals-clear-active);
 }
 
-li{
-    margin-left: 5vw;
-    border-left: 100vw;
-    padding: 0.8vh;
-    background-color: blue; */
-/*border: 0.2vh solid black;*/
-/* width: 20vw;
-    border-radius: 1vw;
-    display: inline-block;
-    text-align: center;
-    border-left: 100vw;
-    
-    
+.resourse-story {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-li:hover{
-    background-color: grey;
-} */
+.resourse-story-vid {
+  width: fit-content;
+  padding: 10px;
+  background-color: var(--color-operator);
+  border-radius: 15px;
+  color: var(--color-primary);
+}
+
+@media (min-width: 900px) {
+  .resourse-image {
+    background-repeat: no-repeat;
+    width: 40%;
+    height: 400px;
+    background-size: contain;
+
+    background-image: url(../images/red-cartoon-calculator.png);
+  }
+}
