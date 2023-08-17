@@ -2,13 +2,15 @@ import { headerFooterLayout } from "./modules/headerFooterLayout.js";
 import { updateDisplay } from "./modules/calculator.js";
 import { listen } from "./modules/ui.js";
 import { modal } from "./modules/modal-window.js";
+import { initBurgerMenu } from "./modules/initBurgerMenu.js";
 
 headerFooterLayout();
 modal();
+initBurgerMenu();
 
-const display = document.getElementById("display");
+const calculator = document.getElementById("calculator");
 
-if (display) {
+if (calculator) {
   function start() {
     listen();
     updateDisplay();
@@ -16,3 +18,7 @@ if (display) {
 
   start();
 }
+
+document.addEventListener("eventLoaded", function () {
+  initBurgerMenu();
+});

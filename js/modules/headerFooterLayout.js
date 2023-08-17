@@ -5,16 +5,15 @@ export const headerFooterLayout = function () {
       window.location.hostname === "127.0.0.1";
     const basePath = isLocalhost ? "." : "/magic-calc-machine";
 
-    fetch(`${basePath}/header.html`)
-      .then((response) => response.text())
-      .then((content) => {
-        document.getElementById("header-placeholder").innerHTML = content;
-      });
+    Promise.all([
+      fetch(`${basePath}/header.html`).then((response) => response.text()),
+      fetch(`${basePath}/footer.html`).then((response) => response.text()),
+    ]).then(([headerContent, footerContent]) => {
+      document.getElementById("header-placeholder").innerHTML = headerContent;
+      document.getElementById("footer-placeholder").innerHTML = footerContent;
 
-    fetch(`${basePath}/footer.html`)
-      .then((response) => response.text())
-      .then((content) => {
-        document.getElementById("footer-placeholder").innerHTML = content;
-      });
+      const loadedEvent = new Event("eventLoaded");
+      document.dispatchEvent(loadedEvent);
+    });
   });
 };
