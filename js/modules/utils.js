@@ -1,6 +1,11 @@
 import { MAX_DIGITS, MAX_NUMBER, MIN_NUMBER } from "./constants.js";
 
 export function truncate(number) {
+  if (!isFinite(number)) {
+    alert("Division by zero!");
+    return "Are you serious?";
+  }
+
   const str = String(number);
   if (str.length <= MAX_DIGITS) return str;
 
