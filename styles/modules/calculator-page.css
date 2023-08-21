@@ -1,7 +1,7 @@
 #calculator {
   display: grid;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(100px, auto) repeat(5, 80px);
+  grid-template-columns: repeat(4, 50px);
+  grid-template-rows: repeat(7, 50px);
   gap: 5px;
 }
 
@@ -14,7 +14,7 @@
   align-items: flex-end;
   padding: 20px;
   border-radius: 25px;
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-medium);
   font-weight: initial;
   text-shadow: 1.3px 1.3px var(--color-neutral3);
   margin: 5px;
@@ -25,7 +25,7 @@ button {
   border-radius: 50px;
   border: none;
   font-weight: initial;
-  font-size: var(--font-size-large);
+  font-size: var(--font-size-medium);
   color: var(--color-neutral2);
 }
 
@@ -69,4 +69,19 @@ button {
 .sign:active,
 .percent:active {
   background-color: var(--color-sign-percent-active);
+}
+
+@media (min-width: 481px) {
+  #calculator {
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: repeat(6, 80px);
+  }
+
+  #display {
+    font-size: var(--font-size-large);
+  }
+
+  button {
+    font-size: var(--font-size-large);
+  }
 }
