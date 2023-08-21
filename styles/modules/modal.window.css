@@ -15,7 +15,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: var(--color-operand);
-  padding: 50px;
+  padding: 30px;
   border-radius: 10px;
   width: 80%;
   max-width: 600px;
@@ -27,9 +27,8 @@
 
 .close-button {
   position: absolute;
-  top: 10px;
+  top: 5px;
   right: 10px;
-  font-size: var(--font-size-large);
   cursor: pointer;
   color: var(--color-equals-clear);
 }
@@ -39,7 +38,7 @@
 }
 
 .modal-text {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .cta-button {
@@ -54,4 +53,20 @@
 
 .cta-button:hover {
   background-color: var(--color-operator-active);
+}
+
+@media (min-width: 481px) {
+  .modal-content {
+    padding: 50px;
+  }
+
+  .close-button {
+    top: 10px;
+    right: 10px;
+    font-size: var(--font-size-large);
+  }
+
+  .modal-text {
+    margin-bottom: 10px;
+  }
 }

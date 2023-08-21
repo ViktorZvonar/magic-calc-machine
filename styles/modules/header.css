@@ -30,6 +30,7 @@ header {
 .header-nav-item {
   text-align: center;
   color: var(--color-neutral2);
+  font-size: var(--font-size-small);
 }
 
 .header-nav-item .current {
@@ -42,7 +43,7 @@ header {
 
 .menu-toggle {
   display: none;
-  font-size: 2rem;
+  font-size: var(--font-size-medium);
   cursor: pointer;
 }
 
@@ -74,6 +75,10 @@ header {
 
   #mobile-menu {
     display: block;
+  }
+
+  .header-nav-item .current {
+    padding: 5px 7px;
   }
 }
 
